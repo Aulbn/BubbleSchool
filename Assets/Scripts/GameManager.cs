@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Vector2 MinMaxBubbleCooldown;
     public float NextBubbleTimer;
     public int Score;
+    public float RoundTimer;
 
     private void Awake()
     {
@@ -41,7 +42,15 @@ public class GameManager : MonoBehaviour
             NextBubbleTimer = Random.Range(MinMaxBubbleCooldown.x, MinMaxBubbleCooldown.y);
         }
 
+        if (RoundTimer <= 0)
+        {
+            Time.timeScale = 0;
+            return;
+        }
+
         NextBubbleTimer -= Time.deltaTime;
+        RoundTimer -= Time.deltaTime;
+        UIManager.SetTime(RoundTimer);
     }
 
     public static void AddScore(int addedScore)
