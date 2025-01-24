@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public List<Student> StudentList;
+    public Camera Camera;
 
     public Vector2 MinMaxBubbleCooldown;
     public float NextBubbleTimer;
+    public int Score;
 
     private void Awake()
     {
@@ -40,6 +42,12 @@ public class GameManager : MonoBehaviour
         }
 
         NextBubbleTimer -= Time.deltaTime;
+    }
+
+    public static void AddScore(int addedScore)
+    {
+        Instance.Score += addedScore;
+        UIManager.SetScore(Instance.Score);
     }
     
     public static void Shuffle<T>(ref T[] array) {

@@ -8,6 +8,7 @@ public class Student : MonoBehaviour
     public GameObject BubbleGumMesh;
     public AnimationCurve TempBubbleBlowingCurve;
     public Vector2 MinMaxBubbleSize;
+    public ParticleSystem Ps_BubblePop;
 
     public enum StudentState
     {
@@ -15,8 +16,10 @@ public class Student : MonoBehaviour
         Idle,
         Blowing
     }
-
     public StudentState State;
+    
+    private Coroutine _BubbleCoroutine;
+
 
     private void Start()
     {
@@ -28,7 +31,24 @@ public class Student : MonoBehaviour
     public void BlowBubble(float blowTime)
     {
         Debug.Log("Blow Bubble!" , gameObject);
-        StartCoroutine(IEBlowBubble(blowTime));
+        if (_BubbleCoroutine != null)
+            StopCoroutine(_BubbleCoroutine);
+        
+        _BubbleCoroutine = StartCoroutine(IEBlowBubble(blowTime));
+    }
+
+    public void BreakBubble()
+    {
+        Debug.Log("BREAK BUBBLE" , gameObject);
+        if (_BubbleCoroutine != null)
+            StopCoroutine(_BubbleCoroutine);
+        
+        BubbleGumMesh.SetActive(false);
+        State = StudentState.Idle;
+        
+        GameManager.AddScore(10);
+
+        Ps_BubblePop.Play();
     }
     
     private IEnumerator IEBlowBubble(float blowTime)
