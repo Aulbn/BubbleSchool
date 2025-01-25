@@ -46,8 +46,6 @@ public class Student : MonoBehaviour
         BubbleGumMesh.SetActive(false);
         State = StudentState.Idle;
         
-        GameManager.AddScore(10);
-
         Ps_BubblePop.Play();
     }
     

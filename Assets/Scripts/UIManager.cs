@@ -53,16 +53,16 @@ public class UIManager : MonoBehaviour
         
         if (_Instance.MultiplierCoroutine != null)
             _Instance.StopCoroutine(_Instance.MultiplierCoroutine);
-        _Instance.MultiplierCoroutine = _Instance.StartCoroutine(_Instance.IEShowMultiplier());
+        _Instance.MultiplierCoroutine = _Instance.StartCoroutine(_Instance.IEShowMultiplier(comboCount));
     }
 
-    private IEnumerator IEShowMultiplier()
+    private IEnumerator IEShowMultiplier(int comboCount)
     {
         _Instance.MultiplierText.enabled = true;
         float timer = 0;
         while (timer < 1)
         {
-            MultiplierText.fontSize = MiltiplierOriginalSize * MultiplierAnimationCurve.Evaluate(timer);
+            MultiplierText.fontSize = MiltiplierOriginalSize * MultiplierAnimationCurve.Evaluate(timer) * (comboCount > 1 ? comboCount * 1.3f : 1);
             timer += Time.deltaTime * MultiplierAnimationSpeed;
             yield return null;
         }

@@ -118,7 +118,10 @@ public class PlayerController : MonoBehaviour
             {
                 Student student = hit.transform.gameObject.GetComponent<Student>();
                 if (student.State == Student.StudentState.Blowing)
+                {
                     student.BreakBubble();
+                    GameManager.AddScore(10);
+                }
             }
         }
         

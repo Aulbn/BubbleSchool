@@ -72,7 +72,10 @@ public class GameManager : MonoBehaviour
     
     public static void AddMultiplierScore(int addedScore, int multiplier)
     {
+        Debug.Log("MULTIPLY SCORE: " + addedScore + " * " + multiplier);
         Instance.Score += addedScore * multiplier;
+        Debug.Log("MULTIPLY SCORE 2: " + Instance.Score);
+
         UIManager.SetScore(Instance.Score);
         UIManager.ShowMultiplier(multiplier);
     }
