@@ -201,6 +201,7 @@ MonoBehaviour:
   ThrowSpeed: 10
   ThrowHitBoxSize: 0.5
   PickUpCollider: {fileID: 5241066550230252926}
+  Animator: {fileID: 1702263981161458333}
 --- !u!135 &5241066550230252926
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -295,6 +296,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8311431141011160414, guid: a6a6016fe26dc4b42a7b983c05da3d7a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a79b19754277cc2438f7061e00eb2f22, type: 2}
     - target: {fileID: 919132149155446097, guid: a6a6016fe26dc4b42a7b983c05da3d7a,
         type: 3}
       propertyPath: m_Name
@@ -310,6 +316,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a6016fe26dc4b42a7b983c05da3d7a, type: 3}
+--- !u!95 &1702263981161458333 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a6a6016fe26dc4b42a7b983c05da3d7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5113060827948291852}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4719636924244947175 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6a6016fe26dc4b42a7b983c05da3d7a,

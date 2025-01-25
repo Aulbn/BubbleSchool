@@ -10,6 +10,7 @@ public class PenProjectile : MonoBehaviour
     public float ThrowSpeed;
     public float ThrowHitBoxSize;
     public Collider PickUpCollider;
+    public Animator Animator;
 
     public void Equip(PlayerController player)
     {
@@ -33,6 +34,11 @@ public class PenProjectile : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void PlayHitAnimation()
+    {
+        Animator.SetTrigger("HitWall");
     }
 
     private IEnumerator IEThrowTravel(Vector3 startPos, Vector3 endPos)
@@ -59,15 +65,9 @@ public class PenProjectile : MonoBehaviour
             yield return null;
         } while (distance < 1);
         
-        // brokenBubblesThisFrame = BreakBubbleRay(transform.position, lastPos);
-        // if (brokenBubblesThisFrame > 0)
-        // {
-        //     brokenBubbles += brokenBubblesThisFrame;
-        //     UIManager.ShowMultiplier(brokenBubbles);
-        // }        
-        
-        transform.position = endPos;
+        transform.position = endPos + (startPos - endPos).normalized * 0.2f;
         PickUpCollider.enabled = true;
+        PlayHitAnimation();
     }
 
     private int BreakBubbleRay(Vector3 startPos, Vector3 endPos)

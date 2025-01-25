@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public Transform WeaponJoint;
     public PenProjectile Pen;
     public bool HasPen;
+    public GameObject Reticle;
     
     private Vector2 _MovementInput;
     private Quaternion _CurrentRotation;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         State = PlayerState.Idle;
+        Reticle.SetActive(false);
     }
 
     private void Update()
@@ -87,6 +89,8 @@ public class PlayerController : MonoBehaviour
                 _CurrentRotation =  Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
                 transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation,
                     Time.deltaTime * RotationSpeed);
+
+                Reticle.transform.rotation = _CurrentRotation;
                 
                 if (Input.GetKeyUp(KeyCode.Mouse1))
                 {
@@ -97,6 +101,7 @@ public class PlayerController : MonoBehaviour
                 {
                     State = PlayerState.Idle;
                     _Animation.SetAimAnimation(false);
+                    Reticle.SetActive(false);
                 }
                 
                 break;            
@@ -136,6 +141,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Start Throw");
         _Animation.SetAimAnimation(true);
         State = PlayerState.Throwing;
+        Reticle.SetActive(true);
     }
     
     private void Throw()
@@ -145,11 +151,12 @@ public class PlayerController : MonoBehaviour
         
         Debug.Log("Throw");
         var throwDir = GetDirectionFromCursor();
-        Pen.Throw(WeaponJoint.position, throwDir);
+        Pen.Throw(transform.position + (throwDir.normalized * 0.5f) + Vector3.up, throwDir);
         State = PlayerState.Idle;
         HasPen = false;
         _Animation.SetAimAnimation(false);
         _Animation.ThrowAnimation();
+        Reticle.SetActive(false);
     }
     
     private Vector3 GetDirectionFromCursor()
