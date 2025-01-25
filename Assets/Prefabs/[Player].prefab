@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 5881679725809519366}
   - {fileID: 1987449050674702111}
+  - {fileID: 5458932126374628554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3459924039134031543
@@ -48,11 +49,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fde3d813b7412e45b615859669c3a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: 0
   MovementSpeed: 4
   RotationSpeed: 10
   StabMoveLockTime: 0.2
   StabCollider: {fileID: 242684776518594747}
-  State: 0
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  WeaponJoint: {fileID: 5458932126374628554}
+  HasPen: 1
 --- !u!114 &6175110506193435241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,5 +334,36 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8700916658706795887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5458932126374628554}
+  m_Layer: 0
+  m_Name: WeaponJoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5458932126374628554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8700916658706795887}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.556, y: 1.09, z: 0.68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2114944088721390092}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

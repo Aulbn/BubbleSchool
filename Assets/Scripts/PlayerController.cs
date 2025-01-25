@@ -5,17 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float MovementSpeed = 1f;
-    public float RotationSpeed = 1f;
-
-    [Header("Violence")] 
-    public float StabMoveLockTime;
-    public SphereCollider StabCollider;
-    
-    private Vector2 _MovementInput;
-    private Quaternion _CurrentRotation;
-    private CharacterController _Cc;
-
     public enum PlayerState
     {
         Stunned,
@@ -25,6 +14,20 @@ public class PlayerController : MonoBehaviour
     }
 
     public PlayerState State;
+    
+    public float MovementSpeed = 1f;
+    public float RotationSpeed = 1f;
+
+    [Header("Violence")] 
+    public float StabMoveLockTime;
+    public SphereCollider StabCollider;
+    public LayerMask EnemyLayer;
+    public Transform WeaponJoint;
+    public bool HasPen;
+    
+    private Vector2 _MovementInput;
+    private Quaternion _CurrentRotation;
+    private CharacterController _Cc;
 
     private void Awake()
     {
@@ -66,32 +69,39 @@ public class PlayerController : MonoBehaviour
                 {
                     Stab();
                 }
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    StartThrow();
+                }
                 break;            
             case PlayerState.Melee:
                 transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation, Time.deltaTime * RotationSpeed * 10);
                 break;            
             case PlayerState.Throwing:
+                
+                _CurrentRotation =  Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation,
+                    Time.deltaTime * RotationSpeed);
+                
+                if (Input.GetKeyUp(KeyCode.Mouse1))
+                {
+                    Throw();
+                }
                 break;            
         }
-
-
     }
 
     private void Stab()
     {
-        //Debug.Log("Stab");
+        // Debug.Log("Stab");
         
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 playerScreenPos = GameManager.Instance.Camera.WorldToScreenPoint(transform.position);
-        var dir = (mousePos - playerScreenPos).normalized;
-        var lookDir = new Vector3(dir.x, 0, dir.y);
-        _CurrentRotation =  Quaternion.LookRotation(lookDir, Vector3.up);
+        _CurrentRotation =  Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
 
-        var hits = Physics.SphereCastAll(StabCollider.center, StabCollider.radius, lookDir.normalized, 0);
-        //Debug.Log("Found " + hits.Length + " colliders");
+        var hits = Physics.OverlapSphere(StabCollider.transform.position, StabCollider.radius, EnemyLayer);
+        // Debug.Log("Found " + hits.Length + " colliders");
         foreach (var hit in hits)
         {
-            //Debug.Log("HIT! " + hit.transform.gameObject + " (" + hit.transform.gameObject.tag + ")");
+            // Debug.Log("HIT! " + hit.transform.gameObject + " (" + hit.transform.gameObject.tag + ")");
             if (hit.transform.gameObject.tag.Equals("Enemy"))
             {
                 Student student = hit.transform.gameObject.GetComponent<Student>();
@@ -101,6 +111,35 @@ public class PlayerController : MonoBehaviour
         }
         
         StartCoroutine(IEStab());
+    }
+
+    private void StartThrow()
+    {
+        if (!HasPen)
+            return;
+        
+        Debug.Log("Start Throw");
+
+        State = PlayerState.Throwing;
+    }
+    
+    private void Throw()
+    {
+        if (!HasPen)
+            return;
+        
+        Debug.Log("Throw");
+        var throwDir = Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
+        
+        State = PlayerState.Idle;
+    }
+
+    private Vector3 GetDirectionFromCursor()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 playerScreenPos = GameManager.Instance.Camera.WorldToScreenPoint(transform.position);
+        var dir = (mousePos - playerScreenPos).normalized;
+        return new Vector3(dir.x, 0, dir.y);
     }
 
     private IEnumerator IEStab()
@@ -116,7 +155,7 @@ public class PlayerController : MonoBehaviour
         State = PlayerState.Idle;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(StabCollider.bounds.center, StabCollider.radius);
     }
