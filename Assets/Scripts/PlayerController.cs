@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
         // Debug.Log("Stab");
         
         _CurrentRotation =  Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
+        _Animation.StabAnimation();
 
         var hits = Physics.OverlapSphere(StabCollider.transform.position, StabCollider.radius, EnemyLayer);
         // Debug.Log("Found " + hits.Length + " colliders");

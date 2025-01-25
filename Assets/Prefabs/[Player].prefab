@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2114944088721390092}
   - component: {fileID: 3459924039134031543}
+  - component: {fileID: 4651323716301486082}
   - component: {fileID: 6175110506193435241}
   - component: {fileID: 6490079605961057895}
-  - component: {fileID: 4651323716301486082}
   m_Layer: 0
   m_Name: '[Player]'
   m_TagString: Player
@@ -63,6 +63,19 @@ MonoBehaviour:
   Pen: {fileID: 6763637601583071861}
   HasPen: 1
   Reticle: {fileID: 7884383464294180368}
+--- !u!114 &4651323716301486082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692505736007063517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e93534987d0f04aac0f96577182ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerAnimator: {fileID: 8533624434608582411}
 --- !u!114 &6175110506193435241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,19 +133,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &4651323716301486082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2692505736007063517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e93534987d0f04aac0f96577182ba6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerAnimator: {fileID: 8533624434608582411}
 --- !u!1 &5260592933077795616
 GameObject:
   m_ObjectHideFlags: 0
