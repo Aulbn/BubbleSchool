@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PenProjectile : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PenProjectile : MonoBehaviour
     public float ThrowHitBoxSize;
     public Collider PickUpCollider;
     public Animator Animator;
+
+    [Header("Sounds")] public AudioSource WallHitSound;
 
     public void Equip(PlayerController player)
     {
@@ -68,6 +71,13 @@ public class PenProjectile : MonoBehaviour
         transform.position = endPos + (startPos - endPos).normalized * 0.2f;
         PickUpCollider.enabled = true;
         PlayHitAnimation();
+        PlaySound_WallHit();
+    }
+
+    private void PlaySound_WallHit()
+    {
+        WallHitSound.pitch = Random.Range(1f, 2f);
+        WallHitSound.Play();
     }
 
     private int BreakBubbleRay(Vector3 startPos, Vector3 endPos)
