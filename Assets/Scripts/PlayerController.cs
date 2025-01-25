@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,6 +33,8 @@ public class PlayerController : MonoBehaviour
     private Quaternion _CurrentRotation;
     private CharacterController _Cc;
     private PlayerAnimation _Animation;
+    private PlayerInput _PlayerInput;
+
 
     public Vector2 MoveInput => _MovementInput; 
 
@@ -38,26 +42,23 @@ public class PlayerController : MonoBehaviour
     {
         _Cc = GetComponent<CharacterController>();
         _Animation = GetComponent<PlayerAnimation>();
+        _PlayerInput = GetComponent<PlayerInput>();
     }
 
     private void Start()
     {
         State = PlayerState.Idle;
         Reticle.SetActive(false);
+        
+        // _Input.OnMeleeDown_Event.AddListener(Stab);
+        // _Input.OnThrowDown_Event.AddListener(Throw);
     }
 
     private void Update()
     {
-        _MovementInput = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.A))
-            _MovementInput.x -= 1;
-        if (Input.GetKey(KeyCode.D))
-            _MovementInput.x += 1;
-        if (Input.GetKey(KeyCode.W))
-            _MovementInput.y += 1;
-        if (Input.GetKey(KeyCode.S))
-            _MovementInput.y -= 1;
+        bool meleeThisFrame = _PlayerInput.actions["Melee"].WasPressedThisFrame();
+        bool throwDownThisFrame = _PlayerInput.actions["Throw"].WasPressedThisFrame();
+        bool throwUpThisFrame = _PlayerInput.actions["Throw"].WasReleasedThisFrame();
         
         var movementDir = new Vector3(_MovementInput.x, 0, _MovementInput.y).normalized;
         
@@ -72,11 +73,11 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation,
                     Time.deltaTime * RotationSpeed);
                 
-                if (Input.GetKeyDown(KeyCode.Mouse0) && HasPen)
+                if (meleeThisFrame && HasPen)
                 {
                     Stab();
                 }
-                if (Input.GetKeyDown(KeyCode.Mouse1) && HasPen)
+                if (throwDownThisFrame && HasPen)
                 {
                     StartThrow();
                 }
@@ -92,12 +93,12 @@ public class PlayerController : MonoBehaviour
 
                 Reticle.transform.rotation = _CurrentRotation;
                 
-                if (Input.GetKeyUp(KeyCode.Mouse1))
+                if (throwUpThisFrame)
                 {
                     Throw();
                 }
                 
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (meleeThisFrame)
                 {
                     State = PlayerState.Idle;
                     _Animation.SetAimAnimation(false);
@@ -106,6 +107,11 @@ public class PlayerController : MonoBehaviour
                 
                 break;            
         }
+    }
+    
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        _MovementInput = ctx.ReadValue<Vector2>();
     }
 
     private void Stab()
@@ -162,6 +168,13 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 GetDirectionFromCursor()
     {
+        Debug.Log(_PlayerInput.currentControlScheme);
+
+        if (_PlayerInput.currentControlScheme.Equals("Gamepad"))
+        {
+            return new(_MovementInput.x, 0, _MovementInput.y);
+        }
+        
         Vector3 mousePos = Input.mousePosition;
         Plane plane = new Plane(Vector3.up, transform.position + Vector3.up);
         Ray ray = GameManager.Instance.Camera.ScreenPointToRay(mousePos);
