@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion _CurrentRotation;
     private CharacterController _Cc;
 
-    public Vector2 MoveInput => _MovementInput;
+    public Vector2 MoveInput => _MovementInput; 
 
     private void Awake()
     {

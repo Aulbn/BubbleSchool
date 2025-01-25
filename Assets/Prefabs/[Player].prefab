@@ -58,7 +58,7 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  WeaponJoint: {fileID: 5458932126374628554}
+  WeaponJoint: {fileID: 4532103821606218234}
   Pen: {fileID: 0}
   HasPen: 1
 --- !u!114 &6175110506193435241
@@ -311,6 +311,12 @@ PrefabInstance:
 --- !u!4 &2345718865516688753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 78d9132516af8354ea1d79583faa9e06,
+    type: 3}
+  m_PrefabInstance: {fileID: 2812238053935977114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4532103821606218234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7358222127889646752, guid: 78d9132516af8354ea1d79583faa9e06,
     type: 3}
   m_PrefabInstance: {fileID: 2812238053935977114}
   m_PrefabAsset: {fileID: 0}

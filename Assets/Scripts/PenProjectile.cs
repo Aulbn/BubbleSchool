@@ -39,25 +39,41 @@ public class PenProjectile : MonoBehaviour
     {
         float distance = 0;
         Vector3 lastPos = startPos;
-        while (distance < 1)
+        int brokenBubbles = 0;
+        // var brokenBubblesThisFrame = 0;
+
+        do
         {
             transform.position = Vector3.Lerp(startPos, endPos, distance);
             distance += Time.deltaTime * ThrowSpeed;
             var rayDir = lastPos - transform.position;
-            BreakBubbleRay(transform.position, lastPos);
-                        
+            
+            var brokenBubblesThisFrame = BreakBubbleRay(transform.position, lastPos);
+            if (brokenBubblesThisFrame > 0)
+            {
+                brokenBubbles += brokenBubblesThisFrame;
+                UIManager.ShowMultiplier(brokenBubbles);
+            }
+
             lastPos = transform.position;
             yield return null;
-        }
+        } while (distance < 1);
         
-        BreakBubbleRay(transform.position, lastPos);
+        // brokenBubblesThisFrame = BreakBubbleRay(transform.position, lastPos);
+        // if (brokenBubblesThisFrame > 0)
+        // {
+        //     brokenBubbles += brokenBubblesThisFrame;
+        //     UIManager.ShowMultiplier(brokenBubbles);
+        // }        
+        
         transform.position = endPos;
         PickUpCollider.enabled = true;
     }
 
-    private void BreakBubbleRay(Vector3 startPos, Vector3 endPos)
+    private int BreakBubbleRay(Vector3 startPos, Vector3 endPos)
     {
         var rayDir = endPos - startPos;
+        int brokenBubbles = 0;
 
         // var hits = Physics.RaycastAll(startPos, rayDir.normalized, rayDir.magnitude, EnemyLayer);
         var hits = Physics.SphereCastAll(startPos, ThrowHitBoxSize, rayDir.normalized, rayDir.magnitude, EnemyLayer);
@@ -70,9 +86,12 @@ public class PenProjectile : MonoBehaviour
                 if (student.State == Student.StudentState.Blowing)
                 {
                     student.BreakBubble();
+                    brokenBubbles++;
                 }
             }
         }
+
+        return brokenBubbles;
     }
 
     private void OnTriggerEnter(Collider other)
