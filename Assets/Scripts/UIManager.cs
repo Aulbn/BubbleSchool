@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public float MultiplierAnimationSpeed;
 
     private Coroutine MultiplierCoroutine;
+    private float MiltiplierOriginalSize;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         _Instance.MultiplierText.enabled = false;
+        MiltiplierOriginalSize = MultiplierText.fontSize;
     }
 
     public static void SetTime(float seconds)
@@ -58,11 +60,11 @@ public class UIManager : MonoBehaviour
         float timer = 0;
         while (timer < 1)
         {
-            MultiplierText.rectTransform.sizeDelta = Vector2.one * MultiplierAnimationCurve.Evaluate(timer);
+            MultiplierText.fontSize = MiltiplierOriginalSize * MultiplierAnimationCurve.Evaluate(timer);
             timer += Time.deltaTime * MultiplierAnimationSpeed;
             yield return null;
         }
-        MultiplierText.rectTransform.sizeDelta = Vector2.one * MultiplierAnimationCurve.Evaluate(1);
+        MultiplierText.fontSize = MiltiplierOriginalSize * MultiplierAnimationCurve.Evaluate(1);
         _Instance.MultiplierText.enabled = false;
     }
 }

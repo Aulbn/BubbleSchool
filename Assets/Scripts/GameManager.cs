@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     public List<Student> StudentList;
     public Camera Camera;
 
-    public Vector2 MinMaxBubbleCooldown;
+    public Vector2 MinMaxBubbleCooldown_Start;
+    public Vector2 MinMaxBubbleCooldown_End;
     public Vector2 MinMaxBubbleBlowTime;
     public float NextBubbleTimer;
     public int Score;
     public float RoundTimer;
+    private float _StartRoundTime;
 
     private void Awake()
     {
@@ -24,6 +26,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         
         StudentList = new List<Student>();
+    }
+
+    private void Start()
+    {
+        _StartRoundTime = RoundTimer;
     }
 
     private void Update()
@@ -40,7 +47,10 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
-            NextBubbleTimer = Random.Range(MinMaxBubbleCooldown.x, MinMaxBubbleCooldown.y);
+            NextBubbleTimer = Random.Range(
+                Mathf.Lerp(MinMaxBubbleCooldown_Start.x, MinMaxBubbleCooldown_End.x, Mathf.InverseLerp(1,0, RoundTimer / _StartRoundTime)), 
+                Mathf.Lerp(MinMaxBubbleCooldown_Start.y, MinMaxBubbleCooldown_End.y, Mathf.InverseLerp(1,0, RoundTimer / _StartRoundTime))
+                );
         }
 
         if (RoundTimer <= 0)
