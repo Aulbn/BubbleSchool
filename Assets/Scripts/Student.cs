@@ -55,7 +55,7 @@ public class Student : MonoBehaviour
         
         // BubbleGumMesh.SetActive(false);
         State = StudentState.Idle;
-        
+        BlowSound.Stop();
         Ps_BubblePop.Play();
         PlaySound_Pop();
         StartCoroutine(IEStun());
@@ -99,6 +99,7 @@ public class Student : MonoBehaviour
         
         yield return new WaitForSeconds(2f);
         State = StudentState.Blowing;
+        PlaySound_Blow();
 
         
         // BubbleGumMesh.SetActive(true);
@@ -125,8 +126,8 @@ public class Student : MonoBehaviour
     
     private void PlaySound_Blow()
     {
-        PopSound.pitch = Random.Range(1f, 2f);
-        PopSound.Play();
+        BlowSound.pitch = Random.Range(1f, 1.5f);
+        BlowSound.Play();
     }
 
 

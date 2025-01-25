@@ -13,7 +13,9 @@ public class PenProjectile : MonoBehaviour
     public Collider PickUpCollider;
     public Animator Animator;
 
-    [Header("Sounds")] public AudioSource WallHitSound;
+    [Header("Sounds")] 
+    public AudioSource WallHitSound;
+    public AudioSource PickUpSound;
 
     public void Equip(PlayerController player)
     {
@@ -22,6 +24,7 @@ public class PenProjectile : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localEulerAngles = Vector3.zero;
         PickUpCollider.enabled = false;
+        PickUpSound.Play();
     }
     
     public bool Throw(Vector3 startPos, Vector3 dir)
