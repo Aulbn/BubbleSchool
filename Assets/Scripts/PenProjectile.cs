@@ -52,7 +52,7 @@ public class PenProjectile : MonoBehaviour
             if (brokenBubblesThisFrame > 0)
             {
                 brokenBubbles += brokenBubblesThisFrame;
-                UIManager.ShowMultiplier(brokenBubbles);
+                GameManager.AddMultiplierScore(10, brokenBubbles);
             }
 
             lastPos = transform.position;

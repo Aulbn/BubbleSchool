@@ -3192,10 +3192,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1895778595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.93}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -40, y: -113}
-  m_SizeDelta: {x: -100, y: 150}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -520, y: 338}
+  m_SizeDelta: {x: 860, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1594435942
 MonoBehaviour:
@@ -3513,7 +3513,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StudentList: []
   Camera: {fileID: 330585545}
-  MinMaxBubbleCooldown: {x: 1, y: 5}
+  MinMaxBubbleCooldown_Start: {x: 2, y: 3}
+  MinMaxBubbleCooldown_End: {x: 0.5, y: 1}
   MinMaxBubbleBlowTime: {x: 2.5, y: 5}
   NextBubbleTimer: 1
   Score: 0
@@ -4201,14 +4202,14 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 9.3945875
-      outSlope: 9.3945875
+      inSlope: 13.753774
+      outSlope: 13.753774
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.16968459
+      outWeight: 0.10348626
     - serializedVersion: 3
-      time: 0.15128785
+      time: 0.05993499
       value: 1
       inSlope: 0
       outSlope: 0
@@ -4217,8 +4218,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.20156328
-      value: 0.84008586
+      time: 0.08301376
+      value: 0.7175201
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -4226,8 +4227,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.26896062
-      value: 0.9817197
+      time: 0.12948743
+      value: 0.9535587
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -4235,8 +4236,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.33789477
-      value: 0.93635285
+      time: 0.16425459
+      value: 0.80908126
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -4244,8 +4245,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.4031745
-      value: 0.95842236
+      time: 0.24417868
+      value: 0.94198865
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -4253,17 +4254,26 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.8215058
-      value: 0.9097952
-      inSlope: -0.6910933
-      outSlope: -0.6910933
+      time: 0.32365885
+      value: 0.8663256
+      inSlope: -0.32333267
+      outSlope: -0.32333267
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.078736976
+    - serializedVersion: 3
+      time: 0.8215058
+      value: 0.8933615
+      inSlope: -0.31991902
+      outSlope: -0.31991902
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.11008156
       outWeight: 0.21695277
     - serializedVersion: 3
       time: 0.9338129
-      value: 0.6623419
+      value: 0.6459082
       inSlope: -4.625012
       outSlope: -4.625012
       tangentMode: 0
@@ -4283,6 +4293,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   MultiplierAnimationSpeed: 0.5
+  MultiplierColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.97264934, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.06529045, a: 1}
+  - {r: 0, g: 0.9706273, b: 1, a: 1}
 --- !u!1001 &1901155920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4548,26 +4563,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4099798489082276822}
     m_Modifications:
-    - target: {fileID: 3527182159008912913, guid: 82be5f15a972fb44a945810c064f1ed9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.14800167
-      objectReference: {fileID: 0}
-    - target: {fileID: 3527182159008912913, guid: 82be5f15a972fb44a945810c064f1ed9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.41110787
-      objectReference: {fileID: 0}
-    - target: {fileID: 3527182159008912913, guid: 82be5f15a972fb44a945810c064f1ed9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.14800167
-      objectReference: {fileID: 0}
-    - target: {fileID: 3527182159008912913, guid: 82be5f15a972fb44a945810c064f1ed9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4543610996629612438, guid: 82be5f15a972fb44a945810c064f1ed9,
         type: 3}
       propertyPath: m_Name
@@ -4623,11 +4618,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4696652420384585876, guid: 82be5f15a972fb44a945810c064f1ed9,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 487cf20667837ba47ac1ce553039dfce, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
