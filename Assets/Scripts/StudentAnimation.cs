@@ -17,8 +17,13 @@ public class StudentAnimation : MonoBehaviour
 
     }
 
-    void Update()
+    public void Play_BlowBubble()
     {
-        
+        StudentAnimator.SetTrigger("BlowBubble");
+    }
+    
+    public void Play_Stunned(bool isStunned)
+    {
+        StudentAnimator.SetBool("IsStunned", isStunned);
     }
 }

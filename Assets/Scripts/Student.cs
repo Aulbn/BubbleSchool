@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Student : MonoBehaviour
 {
-    public GameObject BubbleGumMesh;
+    // public GameObject BubbleGumMesh;
     public AnimationCurve TempBubbleBlowingCurve;
     public Vector2 MinMaxBubbleSize;
     public ParticleSystem Ps_BubblePop;
@@ -22,6 +22,7 @@ public class Student : MonoBehaviour
     {
         None,
         Idle,
+        Chewing,
         Blowing
     }
     public StudentState State;
@@ -33,7 +34,7 @@ public class Student : MonoBehaviour
     {
         GameManager.AddStudent(this);
         State = StudentState.Idle;
-        BubbleGumMesh.SetActive(false);
+        // BubbleGumMesh.SetActive(false);
         _Animation = GetComponent<StudentAnimation>();
     }
 
@@ -42,7 +43,6 @@ public class Student : MonoBehaviour
         Debug.Log("Blow Bubble!" , gameObject);
         if (_BubbleCoroutine != null)
             StopCoroutine(_BubbleCoroutine);
-        
         
         _BubbleCoroutine = StartCoroutine(IEBlowBubble(blowTime));
     }
@@ -53,11 +53,19 @@ public class Student : MonoBehaviour
         if (_BubbleCoroutine != null)
             StopCoroutine(_BubbleCoroutine);
         
-        BubbleGumMesh.SetActive(false);
+        // BubbleGumMesh.SetActive(false);
         State = StudentState.Idle;
         
         Ps_BubblePop.Play();
         PlaySound_Pop();
+        StartCoroutine(IEStun());
+    }
+
+    private IEnumerator IEStun()
+    {
+        _Animation.Play_Stunned(true);
+        yield return new WaitForSeconds(3f);
+        _Animation.Play_Stunned(false);
     }
     
     // private IEnumerator IEBlowBubble(float blowTime)
@@ -82,12 +90,18 @@ public class Student : MonoBehaviour
     
     private IEnumerator IEBlowBubble(float blowTime)
     {
-        State = StudentState.Blowing;
+        State = StudentState.Chewing;
         float time = 0;
         Vector3 minSize = Vector3.one * MinMaxBubbleSize.x;
         Vector3 maxSize = Vector3.one * MinMaxBubbleSize.y;
         
-        BubbleGumMesh.SetActive(true);
+        _Animation.Play_BlowBubble();
+        
+        yield return new WaitForSeconds(2f);
+        State = StudentState.Blowing;
+
+        
+        // BubbleGumMesh.SetActive(true);
         
         // while (time < blowTime)
         // {
@@ -97,9 +111,9 @@ public class Student : MonoBehaviour
         //     yield return null;
         // }
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         
-        BubbleGumMesh.SetActive(false);
+        // BubbleGumMesh.SetActive(false);
         State = StudentState.Idle;
     }
     

@@ -185,6 +185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (10)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -463,6 +468,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (6)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -530,6 +540,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Student] (2)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -703,6 +718,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Student] (11)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1122,6 +1142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Student] (13)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2140,6 +2165,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (8)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2207,6 +2237,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Student] (4)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2381,6 +2416,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (9)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2554,6 +2594,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (5)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2621,6 +2666,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Student] (1)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3432,6 +3482,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (3)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3920,6 +3975,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (14)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4383,6 +4443,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (15)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4505,6 +4570,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Student] (12)'
       objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4572,6 +4642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Student] (7)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916564910502734634, guid: 5f42e632ee6e61948b28ebea06d5e490,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
