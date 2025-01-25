@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -14,9 +15,11 @@ public class GameManager : MonoBehaviour
     public Vector2 MinMaxBubbleCooldown_End;
     public Vector2 MinMaxBubbleBlowTime;
     public float NextBubbleTimer;
-    public int Score;
+    public int _Score;
     public float RoundTimer;
     private float _StartRoundTime;
+    
+    public static int Score => Instance._Score;
 
     private void Awake()
     {
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _StartRoundTime = RoundTimer;
+        Time.timeScale = 1;
     }
 
     private void Update()
@@ -56,6 +60,8 @@ public class GameManager : MonoBehaviour
         if (RoundTimer <= 0)
         {
             Time.timeScale = 0;
+            PlayerController.Instance.State = PlayerController.PlayerState.Stunned;
+            ScoreboardUI.Display();
             return;
         }
 
@@ -66,17 +72,17 @@ public class GameManager : MonoBehaviour
 
     public static void AddScore(int addedScore)
     {
-        Instance.Score += addedScore;
-        UIManager.SetScore(Instance.Score);
+        Instance._Score += addedScore;
+        UIManager.SetScore(Instance._Score);
     }
     
     public static void AddMultiplierScore(int addedScore, int multiplier)
     {
         Debug.Log("MULTIPLY SCORE: " + addedScore + " * " + multiplier);
-        Instance.Score += addedScore * multiplier;
-        Debug.Log("MULTIPLY SCORE 2: " + Instance.Score);
+        Instance._Score += addedScore * multiplier;
+        Debug.Log("MULTIPLY SCORE 2: " + Instance._Score);
 
-        UIManager.SetScore(Instance.Score);
+        UIManager.SetScore(Instance._Score);
         UIManager.ShowMultiplier(multiplier);
     }
     

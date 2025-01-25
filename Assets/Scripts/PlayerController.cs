@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+    
     public enum PlayerState
     {
         Stunned,
@@ -45,6 +47,11 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+        
         _Cc = GetComponent<CharacterController>();
         _Animation = GetComponent<PlayerAnimation>();
         _PlayerInput = GetComponent<PlayerInput>();

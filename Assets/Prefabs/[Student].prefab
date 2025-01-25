@@ -5158,6 +5158,7 @@ GameObject:
   - component: {fileID: 2673349153878578262}
   - component: {fileID: 9162258961903703946}
   - component: {fileID: 1689833802643468847}
+  - component: {fileID: 8963746511143855766}
   m_Layer: 6
   m_Name: '[Student]'
   m_TagString: Enemy
@@ -5277,6 +5278,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 1.02, z: 0.33}
+--- !u!114 &8963746511143855766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916564910502734634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38f613cce1a12f47b4e0fafde877132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttachmentJoint: {fileID: 3513225501336924293}
+  AttachmentList:
+  - {fileID: 8490175621574704910, guid: 11e3d3ca58c99084eb3c9f02b733ae48, type: 3}
+  - {fileID: 3360372015865098722, guid: 56fdddc7ba7fa4c46bb455e48301c83d, type: 3}
 --- !u!1001 &2400222677972156953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5622,6 +5639,12 @@ SkinnedMeshRenderer:
 --- !u!4 &2793908191222785522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e14b5dab056593741acc4a25c300d7e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2400222677972156953}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3513225501336924293 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7958363887012023652, guid: e14b5dab056593741acc4a25c300d7e1,
     type: 3}
   m_PrefabInstance: {fileID: 2400222677972156953}
   m_PrefabAsset: {fileID: 0}

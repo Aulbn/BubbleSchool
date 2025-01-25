@@ -9,7 +9,7 @@ public class ColorRandomizer : MonoBehaviour
     public Color[] Colors;
     void Start()
     {
-        Renderer.material.SetColor("_BaseColor", Colors[Random.Range(0, Colors.Length - 1)]);
+        Renderer.material.SetColor("_BaseColor", Colors[Random.Range(0, Colors.Length)]);
     }
     
 }
