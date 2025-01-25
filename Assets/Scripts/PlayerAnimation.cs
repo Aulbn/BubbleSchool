@@ -27,7 +27,7 @@ public class PlayerAnimation : MonoBehaviour
     public void SetRunAnimation()
     {
 
-        if (PlayerController.MoveInput.magnitude != 0)
+        if (PlayerController.MoveInput.magnitude != 0 && PlayerController.State == PlayerController.PlayerState.Idle)
             PlayerAnimator.SetBool("IsRunning", true);
         else
             PlayerAnimator.SetBool("IsRunning", false);

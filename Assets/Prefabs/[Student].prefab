@@ -4913,8 +4913,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856372430098873200}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 1.3199854, y: 0, z: -2.4920077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4931,9 +4931,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4041964037311097322, guid: 9b537c02bd683244493b7db6fff0b80a,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 2db2b0bf66999cd4bb1980e7162975f7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 773e5fad32020b346a18460bde9e5c42, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4944,7 +4944,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -4977,7 +4977,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5042,8 +5042,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2389904270811164685}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 1.3199854, y: 0, z: -2.4920077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5073,7 +5073,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5106,7 +5106,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5156,8 +5156,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5284531289885364867}
   - component: {fileID: 2673349153878578262}
-  - component: {fileID: 5747692732849500839}
   - component: {fileID: 9162258961903703946}
+  - component: {fileID: 1689833802643468847}
   m_Layer: 6
   m_Name: '[Student]'
   m_TagString: Enemy
@@ -5243,29 +5243,6 @@ MonoBehaviour:
   PopSound: {fileID: 700392502693470567}
   BlowSound: {fileID: 4803450123333332977}
   State: 0
---- !u!136 &5747692732849500839
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7916564910502734634}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &9162258961903703946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5279,6 +5256,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StudentAnimator: {fileID: 8081103043239526280}
+--- !u!135 &1689833802643468847
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916564910502734634}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 1.02, z: 0.33}
 --- !u!1001 &2400222677972156953
 PrefabInstance:
   m_ObjectHideFlags: 0
