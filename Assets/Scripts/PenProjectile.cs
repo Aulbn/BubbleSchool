@@ -17,9 +17,14 @@ public class PenProjectile : MonoBehaviour
     public AudioSource WallHitSound;
     public AudioSource PickUpSound;
 
+    private void Start()
+    {
+        transform.parent = null;
+    }
+
     public void Equip(PlayerController player)
     {
-        transform.parent = player.WeaponJoint;
+        // transform.parent = player.WeaponJoint;
         player.HasPen = true;
         transform.localPosition = Vector3.zero;
         transform.localEulerAngles = Vector3.zero;
@@ -29,7 +34,7 @@ public class PenProjectile : MonoBehaviour
     
     public bool Throw(Vector3 startPos, Vector3 dir)
     {
-        transform.parent = null;
+        // transform.parent = null;
         transform.position = startPos;
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
         

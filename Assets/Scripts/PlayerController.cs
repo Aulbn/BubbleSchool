@@ -114,6 +114,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if (HasPen)
+        {
+            Pen.transform.position = WeaponJoint.position;
+            Pen.transform.rotation = WeaponJoint.rotation;
+        }
+    }
+
     private void PlayThrowSound()
     {
         ThrowSoundSource.pitch = Random.Range(1f, 1.5f);
