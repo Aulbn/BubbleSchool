@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
             return;
         
         Debug.Log("Start Throw");
-
+        _Animation.SetAimAnimation(true);
         State = PlayerState.Throwing;
     }
     
@@ -145,6 +145,8 @@ public class PlayerController : MonoBehaviour
         Pen.Throw(WeaponJoint.position, throwDir);
         State = PlayerState.Idle;
         HasPen = false;
+        _Animation.SetAimAnimation(false);
+        _Animation.ThrowAnimation();
     }
     
     private Vector3 GetDirectionFromCursor()
