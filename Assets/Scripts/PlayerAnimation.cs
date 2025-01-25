@@ -24,7 +24,7 @@ public class PlayerAnimation : MonoBehaviour
     }
 
 
-    void SetRunAnimation()
+    public void SetRunAnimation()
     {
 
         if (PlayerController.MoveInput.magnitude != 0)
@@ -34,17 +34,17 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
-    void SetAimAnimation(bool isAiming)
+    public void SetAimAnimation(bool isAiming)
     {
         PlayerAnimator.SetBool("IsAiming", isAiming);
     }
 
-    void ThrowAnimation()
+    public void ThrowAnimation()
     {
         PlayerAnimator.SetTrigger("Throw");
     }
 
-    void StabAnimation()
+    public void StabAnimation()
     {
         PlayerAnimator.SetTrigger("Stab");
     }

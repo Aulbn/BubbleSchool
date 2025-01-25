@@ -29,12 +29,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 _MovementInput;
     private Quaternion _CurrentRotation;
     private CharacterController _Cc;
+    private PlayerAnimation _Animation;
 
     public Vector2 MoveInput => _MovementInput; 
 
     private void Awake()
     {
         _Cc = GetComponent<CharacterController>();
+        _Animation = GetComponent<PlayerAnimation>();
     }
 
     private void Start()
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     State = PlayerState.Idle;
+                    _Animation.SetAimAnimation(false);
                 }
                 
                 break;            
