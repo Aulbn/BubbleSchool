@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private Quaternion _CurrentRotation;
     private CharacterController _Cc;
 
+    public Vector2 MoveInput => _MovementInput;
+
     private void Awake()
     {
         _Cc = GetComponent<CharacterController>();
@@ -66,11 +68,11 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation,
                     Time.deltaTime * RotationSpeed);
                 
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (Input.GetKeyDown(KeyCode.Mouse0) && HasPen)
                 {
                     Stab();
                 }
-                if (Input.GetKeyDown(KeyCode.Mouse1))
+                if (Input.GetKeyDown(KeyCode.Mouse1) && HasPen)
                 {
                     StartThrow();
                 }
@@ -141,14 +143,30 @@ public class PlayerController : MonoBehaviour
         State = PlayerState.Idle;
         HasPen = false;
     }
-
+    
     private Vector3 GetDirectionFromCursor()
     {
         Vector3 mousePos = Input.mousePosition;
-        Vector3 playerScreenPos = GameManager.Instance.Camera.WorldToScreenPoint(transform.position);
-        var dir = (mousePos - playerScreenPos).normalized;
-        return new Vector3(dir.x, 0, dir.y);
+        Plane plane = new Plane(Vector3.up, transform.position + Vector3.up);
+        Ray ray = GameManager.Instance.Camera.ScreenPointToRay(mousePos);
+        plane.Raycast(ray, out var magnitude);
+        // Vector3 
+        // Vector3 playerScreenPos = GameManager.Instance.Camera.WorldToScreenPoint(transform.position);
+        // var dir = (mousePos - playerScreenPos).normalized;
+        Vector3 hitPoint = ray.origin + ray.direction * magnitude;
+        hitPoint.y = 0;
+        var dir = (hitPoint - transform.position).normalized;
+        Debug.DrawLine(GameManager.Instance.Camera.transform.position, hitPoint);
+        return dir;
     }
+
+    // private Vector3 GetDirectionFromCursor()
+    // {
+    //     Vector3 mousePos = Input.mousePosition;
+    //     Vector3 playerScreenPos = GameManager.Instance.Camera.WorldToScreenPoint(transform.position);
+    //     var dir = (mousePos - playerScreenPos).normalized;
+    //     return new Vector3(dir.x, 0, dir.y);
+    // }
 
     private IEnumerator IEStab()
     {
