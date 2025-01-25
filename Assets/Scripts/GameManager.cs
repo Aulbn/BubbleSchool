@@ -70,6 +70,13 @@ public class GameManager : MonoBehaviour
         UIManager.SetScore(Instance.Score);
     }
     
+    public static void AddMultiplierScore(int addedScore, int multiplier)
+    {
+        Instance.Score += addedScore * multiplier;
+        UIManager.SetScore(Instance.Score);
+        UIManager.ShowMultiplier(multiplier);
+    }
+    
     public static void Shuffle<T>(ref T[] array) {
         for (int i = array.Length - 1; i > 0; i--) {
             var r = UnityEngine.Random.Range(0, i + 1);

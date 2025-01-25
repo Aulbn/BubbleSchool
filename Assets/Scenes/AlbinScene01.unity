@@ -4293,6 +4293,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   MultiplierAnimationSpeed: 0.5
+  MultiplierColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.97264934, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.06529045, a: 1}
+  - {r: 0, g: 0.9706273, b: 1, a: 1}
 --- !u!1001 &1901155920
 PrefabInstance:
   m_ObjectHideFlags: 0

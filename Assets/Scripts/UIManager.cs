@@ -14,7 +14,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI MultiplierText;
     public AnimationCurve MultiplierAnimationCurve;
     public float MultiplierAnimationSpeed;
-
+    public Color[] MultiplierColors;
+    
     private Coroutine MultiplierCoroutine;
     private float MiltiplierOriginalSize;
 
@@ -48,6 +49,7 @@ public class UIManager : MonoBehaviour
     public static void ShowMultiplier(int comboCount)
     {
         _Instance.MultiplierText.text = "x" + comboCount;
+        _Instance.MultiplierText.color = _Instance.MultiplierColors[Mathf.Clamp(comboCount - 1, 0, _Instance.MultiplierColors.Length - 1)];
         
         if (_Instance.MultiplierCoroutine != null)
             _Instance.StopCoroutine(_Instance.MultiplierCoroutine);
