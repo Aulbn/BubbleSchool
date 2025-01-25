@@ -132,7 +132,11 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 128
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
   ThrowSpeed: 10
+  ThrowHitBoxSize: 0.5
   PickUpCollider: {fileID: 5241066550230252926}
 --- !u!135 &5241066550230252926
 SphereCollider:
@@ -153,5 +157,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Camera Camera;
 
     public Vector2 MinMaxBubbleCooldown;
+    public Vector2 MinMaxBubbleBlowTime;
     public float NextBubbleTimer;
     public int Score;
     public float RoundTimer;
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
             {
                 if (student.State == Student.StudentState.Idle)
                 {
-                    student.BlowBubble(3f);
+                    student.BlowBubble(Random.Range(MinMaxBubbleBlowTime.x, MinMaxBubbleBlowTime.y));
                     break;
                 }
             }

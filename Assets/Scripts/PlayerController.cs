@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public SphereCollider StabCollider;
     public LayerMask EnemyLayer;
     public Transform WeaponJoint;
+    public PenProjectile Pen;
     public bool HasPen;
     
     private Vector2 _MovementInput;
@@ -87,6 +88,12 @@ public class PlayerController : MonoBehaviour
                 {
                     Throw();
                 }
+                
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    State = PlayerState.Idle;
+                }
+                
                 break;            
         }
     }
@@ -129,9 +136,10 @@ public class PlayerController : MonoBehaviour
             return;
         
         Debug.Log("Throw");
-        var throwDir = Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
-        
+        var throwDir = GetDirectionFromCursor();
+        Pen.Throw(WeaponJoint.position, throwDir);
         State = PlayerState.Idle;
+        HasPen = false;
     }
 
     private Vector3 GetDirectionFromCursor()

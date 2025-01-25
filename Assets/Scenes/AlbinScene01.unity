@@ -589,8 +589,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 52.267555, y: 1, z: 0.9999998}
+  m_Center: {x: -25.633778, y: 0, z: 0}
 --- !u!23 &271792552
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1017,8 +1017,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 46.5358, y: 1, z: 0.9999998}
+  m_Center: {x: 22.767902, y: 0, z: 5.9058796e-15}
 --- !u!23 &411680584
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1928,8 +1928,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 41.171642, y: 1, z: 0.9999998}
+  m_Center: {x: 20.08582, y: 0, z: 0}
 --- !u!23 &835634071
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3380,6 +3380,7 @@ MonoBehaviour:
   StudentList: []
   Camera: {fileID: 330585545}
   MinMaxBubbleCooldown: {x: 1, y: 5}
+  MinMaxBubbleBlowTime: {x: 2.5, y: 5}
   NextBubbleTimer: 1
   Score: 0
   RoundTimer: 120
@@ -3541,8 +3542,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 62.59644, y: 1, z: 0.9999998}
+  m_Center: {x: -30.798218, y: 0, z: -7.988903e-15}
 --- !u!23 &1809437421
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4323,6 +4324,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4099798489082276822}
     m_Modifications:
+    - target: {fileID: 3527182159008912913, guid: 82be5f15a972fb44a945810c064f1ed9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.14800167
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527182159008912913, guid: 82be5f15a972fb44a945810c064f1ed9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.41110787
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527182159008912913, guid: 82be5f15a972fb44a945810c064f1ed9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.14800167
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527182159008912913, guid: 82be5f15a972fb44a945810c064f1ed9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4543610996629612438, guid: 82be5f15a972fb44a945810c064f1ed9,
         type: 3}
       propertyPath: m_Name
@@ -4341,7 +4362,7 @@ PrefabInstance:
     - target: {fileID: 4639069068873893708, guid: 82be5f15a972fb44a945810c064f1ed9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.608
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4639069068873893708, guid: 82be5f15a972fb44a945810c064f1ed9,
         type: 3}
@@ -4378,6 +4399,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4696652420384585876, guid: 82be5f15a972fb44a945810c064f1ed9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 487cf20667837ba47ac1ce553039dfce, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4389,6 +4415,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 320868806495281138}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &320868806495281140 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 885544590580549141, guid: 82be5f15a972fb44a945810c064f1ed9,
+    type: 3}
+  m_PrefabInstance: {fileID: 320868806495281138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7b20ada23136f4daceec3bbe362be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1904477960748975626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4520,6 +4558,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Player]'
       objectReference: {fileID: 0}
+    - target: {fileID: 3459924039134031543, guid: ceb2fd82e664c644fb18a9c1ecf39aeb,
+        type: 3}
+      propertyPath: Pen
+      value: 
+      objectReference: {fileID: 320868806495281140}
     - target: {fileID: 3459924039134031543, guid: ceb2fd82e664c644fb18a9c1ecf39aeb,
         type: 3}
       propertyPath: HasPen
