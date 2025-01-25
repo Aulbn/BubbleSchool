@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class PlayerController : MonoBehaviour
     public PenProjectile Pen;
     public bool HasPen;
     public GameObject Reticle;
+
+    [Header("Sounds")] 
+    public AudioSource ThrowSoundSource;
+    public AudioSource StabSoundSource;
     
     private Vector2 _MovementInput;
     private Quaternion _CurrentRotation;
@@ -108,6 +113,18 @@ public class PlayerController : MonoBehaviour
                 break;            
         }
     }
+
+    private void PlayThrowSound()
+    {
+        ThrowSoundSource.pitch = Random.Range(1f, 1.5f);
+        ThrowSoundSource.Play();
+    }
+    
+    private void PlayStabSound()
+    {
+        StabSoundSource.pitch = Random.Range(1f, 2f);
+        StabSoundSource.Play();
+    }
     
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -120,6 +137,7 @@ public class PlayerController : MonoBehaviour
         
         _CurrentRotation =  Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
         _Animation.StabAnimation();
+        PlayStabSound();
 
         var hits = Physics.OverlapSphere(StabCollider.transform.position, StabCollider.radius, EnemyLayer);
         // Debug.Log("Found " + hits.Length + " colliders");
@@ -155,8 +173,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!HasPen)
             return;
-        
+
         Debug.Log("Throw");
+        PlayThrowSound();
         var throwDir = GetDirectionFromCursor();
         Pen.Throw(transform.position + (throwDir.normalized * 0.5f) + Vector3.up, throwDir);
         State = PlayerState.Idle;
