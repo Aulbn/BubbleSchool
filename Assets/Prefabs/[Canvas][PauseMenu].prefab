@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 7802809015836779266}
   - component: {fileID: 3947759127099489945}
   m_Layer: 5
-  m_Name: '[Button] Quit'
+  m_Name: '[Button]  Main menu'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,8 +74,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.33, y: 0.3}
-  m_AnchoredPosition: {x: 0, y: -66.740906}
-  m_SizeDelta: {x: -80, y: -191.4818}
+  m_AnchoredPosition: {x: 33.766266, y: -66.740906}
+  m_SizeDelta: {x: -12.4675, y: -191.4818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2988591831507569565
 CanvasRenderer:
@@ -161,7 +161,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4982813506034358919}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa884d2d92606e40a98d3123cde3209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mixer: {fileID: 0}
+  Mixer: {fileID: 24100000, guid: 9b537c02bd683244493b7db6fff0b80a, type: 2}
   VolumeSlider: {fileID: 1340834381377250074}
   MusicVolumeSlider: {fileID: 403565679283326577}
   CameraFollowSlider: {fileID: 1578758409846975311}
@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 7804551356643617278}
   - component: {fileID: 4389581650326892119}
   m_Layer: 5
-  m_Name: (TMP) Quit
+  m_Name: (TMP) Main menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5600793c80e73748810b1bad4fa21ac, type: 2}
   m_sharedMaterial: {fileID: 6586276728645798959, guid: b5600793c80e73748810b1bad4fa21ac,
@@ -1996,7 +1996,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
