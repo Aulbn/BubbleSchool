@@ -5292,8 +5292,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttachmentJoint: {fileID: 3513225501336924293}
   AttachmentList:
-  - {fileID: 8490175621574704910, guid: 11e3d3ca58c99084eb3c9f02b733ae48, type: 3}
   - {fileID: 3360372015865098722, guid: 56fdddc7ba7fa4c46bb455e48301c83d, type: 3}
+  - {fileID: 8490175621574704910, guid: 11e3d3ca58c99084eb3c9f02b733ae48, type: 3}
+  - {fileID: 8490175621574704910, guid: 87f3ed15d8a30ba4eabc71ff0d650984, type: 3}
 --- !u!1001 &2400222677972156953
 PrefabInstance:
   m_ObjectHideFlags: 0
