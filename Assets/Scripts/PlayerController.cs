@@ -130,6 +130,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void PauseGame()
+    {
+        PauseMenu.Toggle();
+    }
+
     private void PlayThrowSound()
     {
         ThrowSoundSource.pitch = Random.Range(1f, 1.5f);
