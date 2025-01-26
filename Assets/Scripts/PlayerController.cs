@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
                 if (student.State == Student.StudentState.Blowing)
                 {
                     student.BreakBubble();
-                    GameManager.AddScore(10);
+                    GameManager.AddScore(5);
                 }
             }
         }
