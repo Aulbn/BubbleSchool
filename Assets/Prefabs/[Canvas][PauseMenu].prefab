@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 3040813871073780964}
   - component: {fileID: 403565679283326577}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Slider - Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -731,9 +731,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mixer: {fileID: 0}
-  VolumeSlider: {fileID: 0}
-  MusicVolumeSlider: {fileID: 0}
-  CameraFollowSlider: {fileID: 0}
+  VolumeSlider: {fileID: 1340834381377250074}
+  MusicVolumeSlider: {fileID: 403565679283326577}
+  CameraFollowSlider: {fileID: 1578758409846975311}
 --- !u!223 &3055179609455574630
 Canvas:
   m_ObjectHideFlags: 0
@@ -1545,7 +1545,7 @@ GameObject:
   - component: {fileID: 2871957155119115756}
   - component: {fileID: 1340834381377250074}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Slider - Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1917,7 +1917,7 @@ GameObject:
   - component: {fileID: 409130982818058585}
   - component: {fileID: 1578758409846975311}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Slider - Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

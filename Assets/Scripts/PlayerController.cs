@@ -73,6 +73,9 @@ public class PlayerController : MonoBehaviour
         bool throwUpThisFrame = _PlayerInput.actions["Throw"].WasReleasedThisFrame();
         
         var movementDir = new Vector3(_MovementInput.x, 0, _MovementInput.y).normalized;
+
+        if (Time.deltaTime == 0)
+            return;
         
         switch (State)
         {

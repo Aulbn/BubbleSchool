@@ -31,10 +31,19 @@ public class PauseMenu : MonoBehaviour
         Close();
     }
 
+    private void OnEnable()
+    {
+        Mixer.GetFloat("MainVol", out float mainVol);
+        VolumeSlider.value = Mathf.InverseLerp(-40, 0, mainVol);
+        
+        Mixer.GetFloat("MusicVol", out float musicVol);
+        MusicVolumeSlider.value = Mathf.InverseLerp(-40, 0, musicVol);
+    }
+
     private void Update()
     {
-        Mixer.SetFloat("Main", VolumeSlider.value);
-        Mixer.SetFloat("Music", MusicVolumeSlider.value);
+        Mixer.SetFloat("MainVol", Mathf.Lerp(-40, 0, VolumeSlider.value));
+        Mixer.SetFloat("MusicVol", Mathf.Lerp(-40, 0, MusicVolumeSlider.value));
     }
 
     public static void Toggle()
