@@ -44,6 +44,11 @@ public class PauseMenu : MonoBehaviour
     {
         Mixer.SetFloat("MainVol", Mathf.Lerp(-40, 0, VolumeSlider.value));
         Mixer.SetFloat("MusicVol", Mathf.Lerp(-40, 0, MusicVolumeSlider.value));
+
+        if (CameraController.Instance != null)
+        {
+            CameraController.SetFollowStrength(CameraFollowSlider.value);
+        }
     }
 
     public static void Toggle()
