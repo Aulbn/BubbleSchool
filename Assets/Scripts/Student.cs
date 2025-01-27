@@ -23,7 +23,8 @@ public class Student : MonoBehaviour
         None,
         Idle,
         Chewing,
-        Blowing
+        Blowing,
+        Stunned
     }
     public StudentState State;
     
@@ -58,7 +59,7 @@ public class Student : MonoBehaviour
         if (_BubbleCoroutine != null)
             StopCoroutine(_BubbleCoroutine);
         
-        State = StudentState.Idle;
+        State = StudentState.Stunned;
         BlowSound.Stop();
         Ps_BubblePop.Play();
         PlaySound_Pop();
@@ -70,6 +71,7 @@ public class Student : MonoBehaviour
         _Animation.Play_Stunned(true);
         yield return new WaitForSeconds(3f);
         _Animation.Play_Stunned(false);
+        State = StudentState.Idle;
     }
     
     private IEnumerator IEBlowBubble(float blowTime)
