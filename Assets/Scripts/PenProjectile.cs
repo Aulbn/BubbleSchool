@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,7 +14,7 @@ public class PenProjectile : MonoBehaviour
     public Collider PickUpCollider;
     public Animator Animator;
 
-    [Header("Sounds")] 
+    [Header("Sounds")]
     public AudioSource WallHitSound;
     public AudioSource PickUpSound;
 
@@ -31,16 +32,16 @@ public class PenProjectile : MonoBehaviour
         PickUpCollider.enabled = false;
         PickUpSound.Play();
     }
-    
+
     public bool Throw(Vector3 startPos, Vector3 dir)
     {
         // transform.parent = null;
         transform.position = startPos;
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
-        
+
         if (Physics.Raycast(startPos, dir, out var hit, 50, WallLayer))
         {
-            StartCoroutine(IEThrowTravel(startPos,  hit.point));
+            StartCoroutine(IEThrowTravel(startPos, hit.point));
             return true;
         }
 
@@ -63,19 +64,23 @@ public class PenProjectile : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startPos, endPos, distance);
             distance += Time.deltaTime * ThrowSpeed;
-            var rayDir = lastPos - transform.position;
-            
+            // var rayDir = lastPos - transform.position;
+
             var brokenBubblesThisFrame = BreakBubbleRay(transform.position, lastPos);
-            if (brokenBubblesThisFrame > 0)
+            if (brokenBubblesThisFrame.Length > 0)
             {
-                brokenBubbles += brokenBubblesThisFrame;
-                GameManager.AddMultiplierScore(10, brokenBubbles);
+                brokenBubbles += brokenBubblesThisFrame.Length;
+                // GameManager.AddMultiplierScore(10, brokenBubbles);
+                foreach (var pos in brokenBubblesThisFrame)
+                {
+                    GameManager.AddMultiplierScore(10, brokenBubbles, pos);
+                }
             }
 
             lastPos = transform.position;
             yield return null;
         } while (distance < 1);
-        
+
         transform.position = endPos + (startPos - endPos).normalized * 0.2f;
         PickUpCollider.enabled = true;
         PlayHitAnimation();
@@ -88,10 +93,11 @@ public class PenProjectile : MonoBehaviour
         WallHitSound.Play();
     }
 
-    private int BreakBubbleRay(Vector3 startPos, Vector3 endPos)
+    private Vector3[] BreakBubbleRay(Vector3 startPos, Vector3 endPos)
     {
         var rayDir = endPos - startPos;
-        int brokenBubbles = 0;
+        // int brokenBubbles = 0;
+        List<Vector3> brokenBubbles = new List<Vector3>();
 
         // var hits = Physics.RaycastAll(startPos, rayDir.normalized, rayDir.magnitude, EnemyLayer);
         var hits = Physics.SphereCastAll(startPos, ThrowHitBoxSize, rayDir.normalized, rayDir.magnitude, EnemyLayer);
@@ -104,12 +110,13 @@ public class PenProjectile : MonoBehaviour
                 if (student.State == Student.StudentState.Blowing)
                 {
                     student.BreakBubble();
-                    brokenBubbles++;
+                    brokenBubbles.Add(student.transform.position + Vector3.up * 2);
+                    // brokenBubbles++;
                 }
             }
         }
 
-        return brokenBubbles;
+        return brokenBubbles.ToArray();
     }
 
     private void OnTriggerEnter(Collider other)

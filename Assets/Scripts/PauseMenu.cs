@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
     public Slider VolumeSlider;
     public Slider MusicVolumeSlider;
     public Slider CameraFollowSlider;
-    
+
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-        
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -36,7 +36,7 @@ public class PauseMenu : MonoBehaviour
     {
         Mixer.GetFloat("MainVol", out float mainVol);
         VolumeSlider.value = Mathf.InverseLerp(-40, 0, mainVol);
-        
+
         Mixer.GetFloat("MusicVol", out float musicVol);
         MusicVolumeSlider.value = Mathf.InverseLerp(-40, 0, musicVol);
     }
@@ -71,13 +71,20 @@ public class PauseMenu : MonoBehaviour
         Instance.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
-    
+
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);
         Close();
     }
-    
+
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
+        Close();
+    }
+
     public void QuitGame()
     {
         Application.Quit();

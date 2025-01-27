@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +7,7 @@ public class ScoreboardUI : MonoBehaviour
     private static ScoreboardUI _Instance;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI HighscoreText;
-    
+
     private void Awake()
     {
         if (_Instance == null)
@@ -47,6 +44,10 @@ public class ScoreboardUI : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(1);
+    }
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
     public void QuitGame()
     {

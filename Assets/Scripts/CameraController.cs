@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     public static CameraController Instance;
-    
-    // private Camera _Camera;
+
+    public Camera _Camera;
     private PlayerController _Player;
     private Vector3 _OriginalPosition;
     public float FollowSpeed = 1;

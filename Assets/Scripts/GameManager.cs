@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public int _Score;
     public float RoundTimer;
     private float _StartRoundTime;
-    
+
     public static int Score => Instance._Score;
 
     private void Awake()
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-        
+
         StudentList = new List<Student>();
     }
 
@@ -52,8 +52,8 @@ public class GameManager : MonoBehaviour
                 }
             }
             NextBubbleTimer = Random.Range(
-                Mathf.Lerp(MinMaxBubbleCooldown_Start.x, MinMaxBubbleCooldown_End.x, Mathf.InverseLerp(1,0, RoundTimer / _StartRoundTime)), 
-                Mathf.Lerp(MinMaxBubbleCooldown_Start.y, MinMaxBubbleCooldown_End.y, Mathf.InverseLerp(1,0, RoundTimer / _StartRoundTime))
+                Mathf.Lerp(MinMaxBubbleCooldown_Start.x, MinMaxBubbleCooldown_End.x, Mathf.InverseLerp(1, 0, RoundTimer / _StartRoundTime)),
+                Mathf.Lerp(MinMaxBubbleCooldown_Start.y, MinMaxBubbleCooldown_End.y, Mathf.InverseLerp(1, 0, RoundTimer / _StartRoundTime))
                 );
         }
 
@@ -75,7 +75,13 @@ public class GameManager : MonoBehaviour
         Instance._Score += addedScore;
         UIManager.SetScore(Instance._Score);
     }
-    
+
+    public static void AddScore(int addedScore, Vector3 worldPos)
+    {
+        AddScore(addedScore);
+        UIManager.ShowPopupScore(worldPos, addedScore);
+    }
+
     public static void AddMultiplierScore(int addedScore, int multiplier)
     {
         Debug.Log("MULTIPLY SCORE: " + addedScore + " * " + multiplier);
@@ -85,9 +91,17 @@ public class GameManager : MonoBehaviour
         UIManager.SetScore(Instance._Score);
         UIManager.ShowMultiplier(multiplier);
     }
-    
-    public static void Shuffle<T>(ref T[] array) {
-        for (int i = array.Length - 1; i > 0; i--) {
+
+    public static void AddMultiplierScore(int addedScore, int multiplier, Vector3 worldPos)
+    {
+        AddMultiplierScore(addedScore, multiplier);
+        UIManager.ShowPopupScore(worldPos, addedScore * multiplier, multiplier);
+    }
+
+    public static void Shuffle<T>(ref T[] array)
+    {
+        for (int i = array.Length - 1; i > 0; i--)
+        {
             var r = UnityEngine.Random.Range(0, i + 1);
             if (r == i) continue;
             var temp = array[i];

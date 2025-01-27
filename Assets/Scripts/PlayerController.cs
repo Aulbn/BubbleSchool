@@ -9,21 +9,21 @@ using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
-    
+
     public enum PlayerState
     {
         Stunned,
-        Idle, 
+        Idle,
         Melee,
         Throwing
     }
 
     public PlayerState State;
-    
+
     public float MovementSpeed = 1f;
     public float RotationSpeed = 1f;
 
-    [Header("Violence")] 
+    [Header("Violence")]
     public float StabMoveLockTime;
     public SphereCollider StabCollider;
     public LayerMask EnemyLayer;
@@ -32,10 +32,10 @@ public class PlayerController : MonoBehaviour
     public bool HasPen;
     public GameObject Reticle;
 
-    [Header("Sounds")] 
+    [Header("Sounds")]
     public AudioSource ThrowSoundSource;
     public AudioSource StabSoundSource;
-    
+
     private Vector2 _MovementInput;
     private Quaternion _CurrentRotation;
     private CharacterController _Cc;
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput _PlayerInput;
 
 
-    public Vector2 MoveInput => _MovementInput; 
+    public Vector2 MoveInput => _MovementInput;
 
     private void Awake()
     {
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-        
+
         _Cc = GetComponent<CharacterController>();
         _Animation = GetComponent<PlayerAnimation>();
         _PlayerInput = GetComponent<PlayerInput>();
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         State = PlayerState.Idle;
         Reticle.SetActive(false);
-        
+
         // _Input.OnMeleeDown_Event.AddListener(Stab);
         // _Input.OnThrowDown_Event.AddListener(Throw);
     }
@@ -71,12 +71,12 @@ public class PlayerController : MonoBehaviour
         bool meleeThisFrame = _PlayerInput.actions["Melee"].WasPressedThisFrame();
         bool throwDownThisFrame = _PlayerInput.actions["Throw"].WasPressedThisFrame();
         bool throwUpThisFrame = _PlayerInput.actions["Throw"].WasReleasedThisFrame();
-        
+
         var movementDir = new Vector3(_MovementInput.x, 0, _MovementInput.y).normalized;
 
         if (Time.deltaTime == 0)
             return;
-        
+
         switch (State)
         {
             case PlayerState.Stunned:
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
                     _CurrentRotation = Quaternion.LookRotation(movementDir);
                 transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation,
                     Time.deltaTime * RotationSpeed);
-                
+
                 if (meleeThisFrame && HasPen)
                 {
                     Stab();
@@ -96,31 +96,31 @@ public class PlayerController : MonoBehaviour
                 {
                     StartThrow();
                 }
-                break;            
+                break;
             case PlayerState.Melee:
                 transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation, Time.deltaTime * RotationSpeed * 10);
-                break;            
+                break;
             case PlayerState.Throwing:
-                
-                _CurrentRotation =  Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
+
+                _CurrentRotation = Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
                 transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation,
                     Time.deltaTime * RotationSpeed);
 
                 Reticle.transform.rotation = _CurrentRotation;
-                
+
                 if (throwUpThisFrame)
                 {
                     Throw();
                 }
-                
+
                 if (meleeThisFrame)
                 {
                     State = PlayerState.Idle;
                     _Animation.SetAimAnimation(false);
                     Reticle.SetActive(false);
                 }
-                
-                break;            
+
+                break;
         }
     }
 
@@ -143,13 +143,13 @@ public class PlayerController : MonoBehaviour
         ThrowSoundSource.pitch = Random.Range(1f, 1.5f);
         ThrowSoundSource.Play();
     }
-    
+
     private void PlayStabSound()
     {
         StabSoundSource.pitch = Random.Range(1f, 2f);
         StabSoundSource.Play();
     }
-    
+
     public void OnMove(InputAction.CallbackContext ctx)
     {
         _MovementInput = ctx.ReadValue<Vector2>();
@@ -158,8 +158,8 @@ public class PlayerController : MonoBehaviour
     private void Stab()
     {
         // Debug.Log("Stab");
-        
-        _CurrentRotation =  Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
+
+        _CurrentRotation = Quaternion.LookRotation(GetDirectionFromCursor(), Vector3.up);
         _Animation.StabAnimation();
         PlayStabSound();
 
@@ -174,11 +174,11 @@ public class PlayerController : MonoBehaviour
                 if (student.State == Student.StudentState.Blowing)
                 {
                     student.BreakBubble();
-                    GameManager.AddScore(5);
+                    GameManager.AddScore(5, student.transform.position + Vector3.up * 2);
                 }
             }
         }
-        
+
         StartCoroutine(IEStab());
     }
 
@@ -186,13 +186,13 @@ public class PlayerController : MonoBehaviour
     {
         if (!HasPen)
             return;
-        
+
         Debug.Log("Start Throw");
         _Animation.SetAimAnimation(true);
         State = PlayerState.Throwing;
         Reticle.SetActive(true);
     }
-    
+
     private void Throw()
     {
         if (!HasPen)
@@ -201,14 +201,14 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Throw");
         PlayThrowSound();
         var throwDir = GetDirectionFromCursor();
-        Pen.Throw(transform.position + (throwDir.normalized * 0.5f) + Vector3.up, throwDir);
         State = PlayerState.Idle;
         HasPen = false;
         _Animation.SetAimAnimation(false);
         _Animation.ThrowAnimation();
         Reticle.SetActive(false);
+        Pen.Throw(transform.position + (throwDir.normalized * 0.5f) + Vector3.up, throwDir);
     }
-    
+
     private Vector3 GetDirectionFromCursor()
     {
         Debug.Log(_PlayerInput.currentControlScheme);
@@ -217,14 +217,10 @@ public class PlayerController : MonoBehaviour
         {
             return new(_MovementInput.x, 0, _MovementInput.y);
         }
-        
-        Vector3 mousePos = Input.mousePosition;
+
         Plane plane = new Plane(Vector3.up, transform.position + Vector3.up);
-        Ray ray = GameManager.Instance.Camera.ScreenPointToRay(mousePos);
+        Ray ray = GameManager.Instance.Camera.ScreenPointToRay(Input.mousePosition);
         plane.Raycast(ray, out var magnitude);
-        // Vector3 
-        // Vector3 playerScreenPos = GameManager.Instance.Camera.WorldToScreenPoint(transform.position);
-        // var dir = (mousePos - playerScreenPos).normalized;
         Vector3 hitPoint = ray.origin + ray.direction * magnitude;
         hitPoint.y = 0;
         var dir = (hitPoint - transform.position).normalized;
@@ -232,13 +228,6 @@ public class PlayerController : MonoBehaviour
         return dir;
     }
 
-    // private Vector3 GetDirectionFromCursor()
-    // {
-    //     Vector3 mousePos = Input.mousePosition;
-    //     Vector3 playerScreenPos = GameManager.Instance.Camera.WorldToScreenPoint(transform.position);
-    //     var dir = (mousePos - playerScreenPos).normalized;
-    //     return new Vector3(dir.x, 0, dir.y);
-    // }
 
     private IEnumerator IEStab()
     {
