@@ -44,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
 
     public Vector2 MoveInput => _MovementInput;
+    public static bool MeleeThisFrame;
+    public static bool ThrowDownThisFrame;
+    public static bool ThrowUpThisFrame;
 
     private void Awake()
     {
@@ -68,9 +71,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        bool meleeThisFrame = _PlayerInput.actions["Melee"].WasPressedThisFrame();
-        bool throwDownThisFrame = _PlayerInput.actions["Throw"].WasPressedThisFrame();
-        bool throwUpThisFrame = _PlayerInput.actions["Throw"].WasReleasedThisFrame();
+        MeleeThisFrame = _PlayerInput.actions["Melee"].WasPressedThisFrame();
+        ThrowDownThisFrame = _PlayerInput.actions["Throw"].WasPressedThisFrame();
+        ThrowUpThisFrame = _PlayerInput.actions["Throw"].WasReleasedThisFrame();
 
         var movementDir = new Vector3(_MovementInput.x, 0, _MovementInput.y).normalized;
 
@@ -88,11 +91,11 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, _CurrentRotation,
                     Time.deltaTime * RotationSpeed);
 
-                if (meleeThisFrame && HasPen)
+                if (MeleeThisFrame && HasPen)
                 {
                     Stab();
                 }
-                if (throwDownThisFrame && HasPen)
+                if (ThrowDownThisFrame && HasPen)
                 {
                     StartThrow();
                 }
@@ -108,12 +111,12 @@ public class PlayerController : MonoBehaviour
 
                 Reticle.transform.rotation = _CurrentRotation;
 
-                if (throwUpThisFrame)
+                if (ThrowUpThisFrame)
                 {
                     Throw();
                 }
 
-                if (meleeThisFrame)
+                if (MeleeThisFrame)
                 {
                     State = PlayerState.Idle;
                     _Animation.SetAimAnimation(false);
