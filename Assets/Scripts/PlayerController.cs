@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
+    [SerializeField]
+    private bool _StartStatic;
+
     public enum PlayerState
     {
         Stunned,
@@ -47,6 +50,8 @@ public class PlayerController : MonoBehaviour
     public static bool MeleeThisFrame;
     public static bool ThrowDownThisFrame;
     public static bool ThrowUpThisFrame;
+    public static bool GamepadNorthThisFrame;
+    public static bool GamepadEastThisFrame;
 
     private void Awake()
     {
@@ -65,8 +70,8 @@ public class PlayerController : MonoBehaviour
         State = PlayerState.Idle;
         Reticle.SetActive(false);
 
-        // _Input.OnMeleeDown_Event.AddListener(Stab);
-        // _Input.OnThrowDown_Event.AddListener(Throw);
+        if (_StartStatic)
+            State = PlayerState.Stunned;
     }
 
     private void Update()
@@ -74,6 +79,8 @@ public class PlayerController : MonoBehaviour
         MeleeThisFrame = _PlayerInput.actions["Melee"].WasPressedThisFrame();
         ThrowDownThisFrame = _PlayerInput.actions["Throw"].WasPressedThisFrame();
         ThrowUpThisFrame = _PlayerInput.actions["Throw"].WasReleasedThisFrame();
+        GamepadNorthThisFrame = _PlayerInput.actions["GamepadNorth"].WasReleasedThisFrame();
+        GamepadEastThisFrame = _PlayerInput.actions["GamepadEast"].WasReleasedThisFrame();
 
         var movementDir = new Vector3(_MovementInput.x, 0, _MovementInput.y).normalized;
 

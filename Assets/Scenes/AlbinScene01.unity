@@ -1893,6 +1893,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8975451339903598752, guid: a4b18b024beb2d94aa206e6482cc2dd4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.379028
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
