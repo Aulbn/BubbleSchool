@@ -98,7 +98,6 @@ public class PenProjectile : MonoBehaviour
         var rayDir = endPos - startPos;
         // int brokenBubbles = 0;
         List<Vector3> brokenBubbles = new List<Vector3>();
-
         // var hits = Physics.RaycastAll(startPos, rayDir.normalized, rayDir.magnitude, EnemyLayer);
         var hits = Physics.SphereCastAll(startPos, ThrowHitBoxSize, rayDir.normalized, rayDir.magnitude, EnemyLayer);
         if (hits != null)
@@ -112,6 +111,10 @@ public class PenProjectile : MonoBehaviour
                     student.BreakBubble();
                     brokenBubbles.Add(student.transform.position + Vector3.up * 2);
                     // brokenBubbles++;
+                }
+                if (student.State != Student.StudentState.Stunned)
+                {
+                    student.DodgePen();
                 }
             }
         }

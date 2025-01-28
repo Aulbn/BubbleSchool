@@ -104,5 +104,8 @@ public class Student : MonoBehaviour
         BlowSound.Play();
     }
 
-
+    public void DodgePen()
+    {
+        _Animation.StudentAnimator.SetTrigger("Dodge");
+    }
 }

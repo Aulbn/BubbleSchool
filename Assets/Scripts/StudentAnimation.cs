@@ -14,7 +14,6 @@ public class StudentAnimation : MonoBehaviour
 
         StudentAnimator.SetFloat("IdleOffset", _IdleOffset);
 
-
     }
 
     public void Play_BlowBubble()
@@ -26,4 +25,7 @@ public class StudentAnimation : MonoBehaviour
     {
         StudentAnimator.SetBool("IsStunned", isStunned);
     }
+
+
+
 }
