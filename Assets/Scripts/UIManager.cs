@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Mono.Cecil;
+using System.Runtime.ExceptionServices;
 using TMPro;
 using UnityEngine;
 
@@ -22,6 +21,11 @@ public class UIManager : MonoBehaviour
     public AnimationCurve MultiplierAnimationCurve;
     public float MultiplierAnimationSpeed;
     public Color[] MultiplierColors;
+
+    [Header("Countdown")]
+    public RectTransform CountdownBackground;
+    public TextMeshProUGUI CountdownText;
+
 
     private Coroutine MultiplierCoroutine;
     private float MiltiplierOriginalSize;
@@ -121,5 +125,23 @@ public class UIManager : MonoBehaviour
         }
         MultiplierText.fontSize = MiltiplierOriginalSize * MultiplierAnimationCurve.Evaluate(1);
         _Instance.MultiplierText.enabled = false;
+    }
+
+    public static void StartCountdown(int time)
+    {
+        _Instance.StartCoroutine(_Instance.IECountdown(time));
+    }
+
+    private IEnumerator IECountdown(int time)
+    {
+        Time.timeScale = 0;
+        CountdownBackground.gameObject.SetActive(true);
+        for (int i = time; i > 0; i--)
+        {
+            CountdownText.text = i.ToString();
+            yield return new WaitForSecondsRealtime(1);
+        }
+        CountdownBackground.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 }

@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         _StartRoundTime = RoundTimer;
         Time.timeScale = 1;
+        UIManager.StartCountdown(3);
     }
 
     private void Update()
